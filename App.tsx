@@ -13,11 +13,17 @@ import { THEME } from "./src/theme";
 import { Loading } from "./src/components/Loading";
 
 import { CartContextProvider } from "./src/contexts/CartContext";
+import { tagUserEmailCreate } from "./src/notifications/notificationsTags";
 
-if (process.env.APP_ID) OneSignal.initialize(process.env.APP_ID);
+// O projeto está sendo usado para teste por isso a chave
+// está sendo passada diretamente
+OneSignal.initialize("d80c8672-e2ae-4359-8e02-803e0890e4eb");
+OneSignal.Notifications.requestPermission(true);
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
+  tagUserEmailCreate("matheusteodorogarcia@gmail.com.br")
 
   return (
     <NativeBaseProvider theme={THEME}>
